@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Camara</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_configuration">Configuration</string>
+    <string name="title_activity_game">GameActivity</string>
+    <string name="title_activity_resume">ResumeActivity</string>
+    <string name="winner">The Winner is:</string>
+    <string name="play">Play</string>
+    <string name="Search_oponent">Search Oponent</string>
+    <string name="play_again">Play Again</string>
+    <string name="title_activity_init">InitActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_agree_to_play">AgreeToPlayActivity</string>
+
+</resources>
