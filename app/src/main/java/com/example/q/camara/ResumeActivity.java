@@ -21,11 +21,15 @@ public class ResumeActivity extends ActionBarActivity {
         TextView tv_title = (TextView) findViewById(R.id.textview_resume_title);
         TextView tv_winner = (TextView) findViewById(R.id.textview_winner_player);
         String winner = getIntent().getStringExtra("winner");
-       if (winner.equals("empat")) {
-             tv_title.setText("");
-            tv_winner.setText(winner);
-        } else {
-            tv_winner.setText(winner);
+        if(winner != null) {
+            if (winner.equals("empat")) {
+                tv_title.setText("");
+                tv_winner.setText(winner);
+            } else {
+                tv_winner.setText(winner);
+            }
+        }else{
+            tv_title.setText("error de conexio");
         }
         bt_play_again.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -274,7 +274,16 @@ public class GameActivity extends ActionBarActivity implements SensorEventListen
                     }
 
                 } catch (Exception ignored) {
-                    System.out.println("****************++++"+ ignored.toString()+"+++++++++++++++********************");
+
+                    GameActivity.this.finish();
+                    GameActivity.this.startActivity(new Intent(getApplicationContext(), ResumeActivity.class ));
+                }finally {
+                    try {
+                        serverSocket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    finish();
                 }
             }
 
@@ -297,23 +306,38 @@ public class GameActivity extends ActionBarActivity implements SensorEventListen
                         doMove();
                     }
                 } catch (Exception e) {
+
+                    GameActivity.this.finish();
+                    GameActivity.this.startActivity(new Intent(getApplicationContext(), ResumeActivity.class));
+                }finally {
+                    finish();
                 }
 
             }
 
 
-            String winner = tauler.getWinner();
-            try {
-                if (tauler.getFirstAskWinner()) {
-                    output = new ObjectOutputStream(socket.getOutputStream());
-                    output.writeObject(tauler);
-                }
-                this.closeSocket();
-            }catch(Exception e){
-            }
-            GameActivity.this.finish();
-            GameActivity.this.startActivity(new Intent(getApplicationContext(), ResumeActivity.class ).putExtra("winner", winner));
+
         }
+        private void finish() {
+            if (socket != null && !socket.isClosed()) {
+                String winner = tauler.getWinner();
+                try {
+                    if (tauler.getFirstAskWinner()) {
+                        output = new ObjectOutputStream(socket.getOutputStream());
+                        output.writeObject(tauler);
+                    }
+                    this.closeSocket();
+                } catch (Exception e) {
+
+                }finally{
+                    GameActivity.this.finish();
+                    GameActivity.this.startActivity(new Intent(getApplicationContext(), ResumeActivity.class).putExtra("winner", winner));
+                }
+
+
+            }
+        }
+
         private void waitMove() throws IOException, InterruptedException, ClassNotFoundException {
             int i=0;
             while(socket.getInputStream().available()<=0 && i<120){
