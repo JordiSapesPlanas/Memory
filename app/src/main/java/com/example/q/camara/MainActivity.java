@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.q.camara.Statistics.StatisticsActivity;
+
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     public static final String DEFAULT = "N?A";
@@ -17,7 +19,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Button btn_search_opponent;
     Button btn_play;
     Button btn_login;
-
+    Button btn_statistics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -37,7 +39,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         SharedPreferences sharedPreferences = getSharedPreferences("Data", Context.MODE_PRIVATE);
         String regId = sharedPreferences.getString("regId",DEFAULT);
 //        if(regId.equals(DEFAULT))
-            new GcmRegistrationAsyncTask(this).execute();
+        btn_statistics = (Button) findViewById(R.id.btn_statistics);
+        btn_statistics.setOnClickListener(this);
+
+        new GcmRegistrationAsyncTask(this).execute();
 
         System.out.println(regId);
 
@@ -81,6 +86,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
             case R.id.btn_login_main:
                 startActivity(new Intent(this, LoginActivity.class));
+                break;
+
+            case R.id.btn_statistics:
+                startActivity(new Intent(this, StatisticsActivity.class));
                 break;
         }
 

@@ -14,5 +14,7 @@
     <string name="title_activity_init">InitActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_agree_to_play">AgreeToPlayActivity</string>
+    <string name="title_activity_statistics">StatisticsActivity</string>
+
 
 </resources>
